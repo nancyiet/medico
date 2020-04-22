@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Medico</title>
+
+
+  <!-- Favicons -->
+  <link href="/assets/img/m.jpeg" rel="icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <!-- Fontawesome CSS -->
+  <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+
+</head>
+
+<body>
+  <div class="">
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg header-nav">
+        <div class="navbar-header">
+          <a id="mobile_btn" href="javascript:void(0);">
+            <span class="bar-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </a>
+          <a href="/" class="navbar-brand logo">
+            <img src="/assets/img/med.png" style="width: 80px;height: 80px;" class="img-fluid" alt="Logo">
+          </a>
+        </div>
+        <div class="main-menu-wrapper">
+          <div class="menu-header">
+            <a href="index-2.html" class="menu-logo">
+              <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+            </a>
+            <a id="menu_close" class="menu-close" href="javascript:void(0);">
+              <i class="fas fa-times"></i>
+            </a>
+          </div>
+          <ul class="main-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li class="has-submenu">
+              <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
+              <ul class="submenu">
+                <li><a href="search">Search Doctor</a></li>
+                <li><a href="docProfile">Doctor Profile</a></li>
+                <li><a href="patientDashboard">Patient Dashboard</a></li>
+                <!-- <li><a href="change-password.html">Change Password</a></li> -->
+              </ul>
+            </li>
+            <li>
+              <a href="admin/index.html" target="_blank">Admin</a>
+            </li>
+            <li class="login-link">
+              <a href="login.html">Login / Signup</a>
+            </li>
+          </ul>
+        </div>
+        <ul class="nav header-navbar-rht">
+          <li class="nav-item contact-item">
+            <div class="header-contact-img">
+              <i class="far fa-hospital"></i>
+            </div>
+            <div class="header-contact-detail">
+              <p class="contact-header">Contact</p>
+              <p class="contact-info-header"> +91765894387</p>
+            </div>
+          </li>
+
+
+
+
+          <%  if(!user._id) {  %>
+          <!-- login or Signup -->
+
+          <li class="nav-item">
+            <a class="nav-link header-login" href="/login">login / Signup </a>
+          </li>
+
+          <%  } else { %>
+          <!-- User Menu -->
+          <li class="nav-item dropdown has-arrow logged-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <!-- <span class="user-img">
+                <img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="<%= user.name %>">
+              </span> -->
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="user-header">
+                <!-- <div class="avatar avatar-sm">
+                  <img src="/assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                </div> -->
+                <div class="user-text">
+                  <h6><%= user.name %></h6>
+                  <p class="text-muted mb-0"><%= user.phoneNumber %></p>
+                </div>
+              </div>
+              <a class="dropdown-item" href="patientDashboard">Dashboard</a>
+              <!-- <a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a> -->
+              <a class="dropdown-item" href="logout">Logout</a>
+            </div>
+          </li>
+          <!-- /User Menu -->
+
+          <%  } %>
+
+        </ul>
+      </nav>
+    </header>
+    <!-- /Header -->
