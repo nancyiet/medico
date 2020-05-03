@@ -1,0 +1,72 @@
+<%- include("partials/header", {user: user}); -%>
+
+<!-- Breadcrumb -->
+
+<div class="breadcrumb-bar">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-12 col-12">
+        <nav aria-label="breadcrumb" class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Appointments</li>
+          </ol>
+        </nav>
+        <h2 class="breadcrumb-title">Appointments</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /Breadcrumb -->
+
+<!-- Recent Orders -->
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="datatable table table-hover table-center mb-0">
+        <thead>
+          <tr>
+            <th>Doctor Name</th>
+            <th>Speciality</th>
+            <th>Patient Name</th>
+            <th>Apointment Time</th>
+            <th class="text-right">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% appointments.forEach(function(appointment) { %>
+
+            <tr>
+              <a href="/">
+            <td>
+              <h2 class="table-avatar">
+                <!-- <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a> -->
+                <a href="profile.html"><%= appointment.doctor.firstName + " " + appointment.doctor.lastName  %></a>
+              </h2>
+            </td>
+            <td><%= appointment.doctor.department %></td>
+            <td>
+              <h2 class="table-avatar">
+                <!-- <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a> -->
+                <a href="profile.html"><%= appointment.patient.firstName + " " + appointment.patient.lastName  %> </a>
+              </h2>
+            </td>
+            <td><%= appointment.date.getDate() + "/" + (appointment.date.getMonth()+1) + "/" + appointment.date.getFullYear() %> <span class="text-primary d-block"><%= appointment.timeSlot %></span></td>
+            <td class="text-right">
+              $200.00
+            </td>
+          </a>
+          </tr>
+
+          <% }); %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- /Recent Orders -->
+
+<%- include("partials/footer"); -%>

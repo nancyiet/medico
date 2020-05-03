@@ -1,0 +1,124 @@
+<%- include("partials/header", {user: user}); -%>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-12 col-12">
+        <nav aria-label="breadcrumb" class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Patient Select</li>
+          </ol>
+        </nav>
+        <h2 class="breadcrumb-title">Patient Select</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Breadcrumb -->
+
+
+<!-- Page Content -->
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="booking-doc-info">
+              <a href="doctor-profile.html" class="booking-doc-img">
+                <img src="/assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+              </a>
+              <div class="booking-info">
+                <h4><a href="doctor-profile.html"><%= doctor.firstName + " " + doctor.lastName %></a></h4>
+                <div class="rating">
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star"></i>
+                  <span class="d-inline-block average-rating">35</span>
+                </div>
+                <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> <%= doctor.location %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="submit-section proceed-btn text-right">
+          <a href="user/patientProfile" class="btn btn-primary submit-btn">New Patient</a>
+        </div>
+
+
+        <!-- Schedule Widget -->
+
+        <div id="timeSlot" class="card booking-schedule schedule-widget">
+
+          <!-- Schedule Header -->
+          <div class="tab-content">
+
+            <!-- Upcoming Appointment Tab -->
+            <div class="tab-pane show active" id="upcoming-appointments">
+              <div class="card card-table mb-0">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-center mb-0">
+                      <thead>
+                        <tr>
+                          <th>Patient Name</th>
+                          <th>Sex</th>
+                          <th>DOB</th>
+                          <th>Mobile No.</th>
+                          <th>Address</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <%  patients.forEach(function(patient) { %>
+                        <form action="/patientSelect" method="post">
+
+                          <tr>
+                            <td>
+                              <h2 class="table-avatar">
+                                <!-- <a href="patient-profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient.jpg" alt="User Image"></a> -->
+                                <a href="patient-profile.html"><%= patient.firstName + " " + patient.lastName%> <span>#PT0016</span></a>
+                              </h2>
+                            </td>
+                            <td><%= patient.sex %></td>
+
+                            <% const dob = new Date(patient.dob); %>
+                            <% const d = dob.getDate(); %>
+                            <% const m = dob.getMonth()+1; %>
+                            <% const y = dob.getFullYear(); %>
+
+                            <td><%= d + "/" + m + "/" + y %></td>
+                            <td class="text-center"><%= patient.phoneNumber%></td>
+                            <td><%= patient.city %></td>
+                            <td><button class="btn btn-success" type="submit" name="patientId" value="<%= patient._id %>"><i class="fa fa-arrow-circle-right fa-lg"></i></button></td>
+                          </tr>
+
+                        </form>
+                        <%  }) %>
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- /Upcoming Appointment Tab -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /Page Content -->
+
+  <%- include("partials/footer"); -%>

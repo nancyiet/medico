@@ -1,0 +1,394 @@
+<%- include("../partials/header"); -%>
+
+<!-- Page Content -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Schedule Timings</h4>
+              <h4 class="card-title d-flex justify-content-between">
+                <span>Time Slots</span>
+                <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+              </h4>
+              <div class="profile-box">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card schedule-widget mb-0">
+
+                      <!-- Schedule Header -->
+                      <div class="schedule-header">
+
+                        <!-- Schedule Nav -->
+                        <div class="schedule-nav">
+                          <ul class="nav nav-tabs nav-justified">
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#slot_sunday">Sunday</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" data-toggle="tab" href="#slot_monday">Monday</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#slot_tuesday">Tuesday</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#slot_wednesday">Wednesday</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#slot_thursday">Thursday</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#slot_friday">Friday</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#slot_saturday">Saturday</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- /Schedule Nav -->
+
+                      </div>
+                      <!-- /Schedule Header -->
+
+                      <!-- Schedule Content -->
+                      <div class="tab-content schedule-cont">
+
+                        <!-- Sunday Slot -->
+                        <div id="slot_sunday" class="tab-pane fade">
+                          <h4 class="card-title d-flex justify-content-between">
+                            <span>Time Slots</span>
+                          </h4>
+
+                          <% if(timeSlots.sunday.length === 0){ %>
+                          <p class="text-muted mb-0">Not Available</p>
+                          <% } else { %>
+
+                          <!-- Slot List -->
+                          <div class="doc-times">
+                            <% timeSlots.sunday.forEach(function(slot) { %>
+                            <form id="<%= "sunday" + slot %>" class="" action="/admin/deleteDoctorTimeSlot" method="post">
+                              <div class="doc-slot-list">
+                                <%= slot %>
+                                <input type="hidden" name="day" value="sunday">
+                                <input type="hidden" name="timeSlot" value="<%= slot %>">
+                                <input type="hidden" name="doctorId" value="<%= timeSlots.doctorId %>">
+                                <a href="javascript:{}" onclick="document.getElementById('<%= "sunday" + slot %>').submit(); return true;" class="delete_schedule">
+                                  <i class="fa fa-times"></i>
+                                </a>
+                              </div>
+                            </form>
+                            <%  }) %>
+                          </div>
+                          <% } %>
+                          <!-- /Slot List -->
+
+
+                        </div>
+                        <!-- /Sunday Slot -->
+
+                        <!-- Monday Slot -->
+                        <div id="slot_monday" class="tab-pane fade show">
+                          <h4 class="card-title d-flex justify-content-between">
+                            <span>Time Slots</span>
+                          </h4>
+
+                          <% if(timeSlots.monday.length === 0){ %>
+                          <p class="text-muted mb-0">Not Available</p>
+                          <% } else { %>
+
+                          <!-- Slot List -->
+                          <div class="doc-times">
+
+                            <% timeSlots.monday.forEach(function(slot) { %>
+
+                            <form id="<%= "monday" + slot %>" class="" action="/admin/deleteDoctorTimeSlot" method="post">
+                              <div class="doc-slot-list">
+                                <%= slot %>
+                                <input type="hidden" name="day" value="monday">
+                                <input type="hidden" name="timeSlot" value="<%= slot %>">
+                                <input type="hidden" name="doctorId" value="<%= timeSlots.doctorId %>">
+                                <a href="javascript:{}" onclick="document.getElementById('<%= "monday" + slot %>').submit(); return true;" class="delete_schedule">
+                                  <i class="fa fa-times"></i>
+                                </a>
+                              </div>
+                            </form>
+
+                            <%  }) %>
+
+                          </div>
+
+                          <% } %>
+                          <!-- /Slot List -->
+
+                        </div>
+                        <!-- /Monday Slot -->
+
+                        <!-- Tuesday Slot -->
+                        <div id="slot_tuesday" class="tab-pane fade">
+                          <h4 class="card-title d-flex justify-content-between">
+                            <span>Time Slots</span>
+                          </h4>
+
+                          <% if(timeSlots.tuesday.length === 0){ %>
+                          <p class="text-muted mb-0">Not Available</p>
+                          <% } else { %>
+
+                            <!-- Slot List -->
+                            <div class="doc-times">
+
+                              <% timeSlots.tuesday.forEach(function(slot) { %>
+
+                              <form id="<%= "tuesday" + slot %>" class="" action="/admin/deleteDoctorTimeSlot" method="post">
+                                <div class="doc-slot-list">
+                                  <%= slot %>
+                                  <input type="hidden" name="day" value="tuesday">
+                                  <input type="hidden" name="timeSlot" value="<%= slot %>">
+                                  <input type="hidden" name="doctorId" value="<%= timeSlots.doctorId %>">
+                                  <a href="javascript:{}" onclick="document.getElementById('<%= "tuesday" + slot %>').submit(); return true;" class="delete_schedule">
+                                    <i class="fa fa-times"></i>
+                                  </a>
+                                </div>
+                              </form>
+
+                              <%  }) %>
+
+                            </div>
+
+                            <% } %>
+                            <!-- /Slot List -->
+
+                        </div>
+                        <!-- /Tuesday Slot -->
+
+                        <!-- Wednesday Slot -->
+                        <div id="slot_wednesday" class="tab-pane fade">
+                          <h4 class="card-title d-flex justify-content-between">
+                            <span>Time Slots</span>
+                          </h4>
+
+                          <% if(timeSlots.wednesday.length === 0){ %>
+                          <p class="text-muted mb-0">Not Available</p>
+                          <% } else { %>
+
+                          <!-- Slot List -->
+                          <div class="doc-times">
+                            <% timeSlots.wednesday.forEach(function(slot) { %>
+                            <form id="<%= "wednesday" + slot %>" class="" action="/admin/deleteDoctorTimeSlot" method="post">
+                              <div class="doc-slot-list">
+                                <%= slot %>
+                                <input type="hidden" name="day" value="wednesday">
+                                <input type="hidden" name="timeSlot" value="<%= slot %>">
+                                <input type="hidden" name="doctorId" value="<%= timeSlots.doctorId %>">
+                                <a href="javascript:{}" onclick="document.getElementById('<%= "wednesday" + slot %>').submit(); return true;" class="delete_schedule">
+                                  <i class="fa fa-times"></i>
+                                </a>
+                              </div>
+                            </form>
+                            <%  }) %>
+                          </div>
+                          <% } %>
+                          <!-- /Slot List -->
+
+
+                        </div>
+                        <!-- /Wednesday Slot -->
+
+                        <!-- Thursday Slot -->
+                        <div id="slot_thursday" class="tab-pane fade">
+                          <h4 class="card-title d-flex justify-content-between">
+                            <span>Time Slots</span>
+                          </h4>
+
+                          <% if(timeSlots.thursday.length === 0){ %>
+                          <p class="text-muted mb-0">Not Available</p>
+                          <% } else { %>
+
+                          <!-- Slot List -->
+                          <div class="doc-times">
+                            <% timeSlots.thursday.forEach(function(slot) { %>
+                            <form id="<%= "thursday" + slot %>" class="" action="/admin/deleteDoctorTimeSlot" method="post">
+                              <div class="doc-slot-list">
+                                <%= slot %>
+                                <input type="hidden" name="day" value="thursday">
+                                <input type="hidden" name="timeSlot" value="<%= slot %>">
+                                <input type="hidden" name="doctorId" value="<%= timeSlots.doctorId %>">
+                                <a href="javascript:{}" onclick="document.getElementById('<%= "thursday" + slot %>').submit(); return true;" class="delete_schedule">
+                                  <i class="fa fa-times"></i>
+                                </a>
+                              </div>
+                            </form>
+                            <%  }) %>
+                          </div>
+                          <% } %>
+                          <!-- /Slot List -->
+
+                        </div>
+                        <!-- /Thursday Slot -->
+
+                        <!-- Friday Slot -->
+                        <div id="slot_friday" class="tab-pane fade">
+                          <h4 class="card-title d-flex justify-content-between">
+                            <span>Time Slots</span>
+                          </h4>
+
+                          <% if(timeSlots.friday.length === 0){ %>
+                          <p class="text-muted mb-0">Not Available</p>
+                          <% } else { %>
+
+                          <!-- Slot List -->
+                          <div class="doc-times">
+                            <% timeSlots.friday.forEach(function(slot) { %>
+                            <form id="<%= "friday" + slot %>" class="" action="/admin/deleteDoctorTimeSlot" method="post">
+                              <div class="doc-slot-list">
+                                <%= slot %>
+                                <input type="hidden" name="day" value="friday">
+                                <input type="hidden" name="timeSlot" value="<%= slot %>">
+                                <input type="hidden" name="doctorId" value="<%= timeSlots.doctorId %>">
+                                <a href="javascript:{}" onclick="document.getElementById('<%= "friday" + slot %>').submit(); return true;" class="delete_schedule">
+                                  <i class="fa fa-times"></i>
+                                </a>
+                              </div>
+                            </form>
+                            <%  }) %>
+                          </div>
+                          <% } %>
+                          <!-- /Slot List -->
+
+
+                        </div>
+                        <!-- /Friday Slot -->
+
+                        <!-- Saturday Slot -->
+                        <div id="slot_saturday" class="tab-pane fade">
+                          <h4 class="card-title d-flex justify-content-between">
+                            <span>Time Slots</span>
+                          </h4>
+                          <% if(timeSlots.saturday.length === 0){ %>
+                          <p class="text-muted mb-0">Not Available</p>
+                          <% } else { %>
+
+                          <!-- Slot List -->
+                          <div class="doc-times">
+                            <% timeSlots.saturday.forEach(function(slot) { %>
+                            <form id="<%= "saturday" + slot %>" class="" action="/admin/deleteDoctorTimeSlot" method="post">
+                              <div class="doc-slot-list">
+                                <%= slot %>
+                                <input type="hidden" name="day" value="saturday">
+                                <input type="hidden" name="timeSlot" value="<%= slot %>">
+                                <input type="hidden" name="doctorId" value="<%= timeSlots.doctorId %>">
+                                <a href="javascript:{}" onclick="document.getElementById('<%= "saturday" + slot %>').submit(); return true;" class="delete_schedule">
+                                  <i class="fa fa-times"></i>
+                                </a>
+                              </div>
+                            </form>
+                            <%  }) %>
+                          </div>
+                          <% } %>
+                          <!-- /Slot List -->
+
+                        </div>
+                        <!-- /Saturday Slot -->
+
+                      </div>
+                      <!-- /Schedule Content -->
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!-- Add Time Slot Modal -->
+    <div class="modal fade custom-modal" id="add_time_slot">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Time Slots</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form action="/admin/doctorTimeSlots" method="post">
+              <div class="hours-info">
+                <div class="row form-row hours-cont">
+                  <div class="col-12 col-md-10">
+                    <div class="row form-row">
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label>Week Day</label>
+                          <select name="weekDay" class="select form-control">
+                            <option>-</option>
+                            <option>Sunday</option>
+                            <option selected="selected">Monday</option>
+                            <option>Tuesday</option>
+                            <option>wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="row form-row">
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label>Start Time</label>
+                          <input type="time" name="startTime" value="" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label>End Time</label>
+                          <input type="time" name="endTime" value="" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="submit-section text-center">
+                <button name="doctorId" value="<%= timeSlots.doctorId %>" type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Add Time Slot Modal -->
+
+
+  </div>
+</div>
+<!-- /Page Content -->
+
+
+
+
+<%- include("../partials/footer"); -%>

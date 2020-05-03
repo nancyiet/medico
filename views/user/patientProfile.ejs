@@ -1,0 +1,118 @@
+<%- include("../partials/header",{user: user}); -%>
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-12 col-12">
+        <nav aria-label="breadcrumb" class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+            <li class="<br>eadcrumb-item active" aria-current="page">Profile Settings</li>
+          </ol>
+        </nav>
+        <h2 class="breadcrumb-title">Profile Settings</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+
+
+      <div class="col-md-11 container">
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Profile Settings Form -->
+            <form action="patientProfile" method="post">
+              <div class="row form-row">
+                <div class="col-12 col-md-12">
+                  <h1>Patient Details</h1>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstName" required>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastName">
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                    <div class="cal-icon">
+                      <input type="date" class="form-control datetimepicker" name="dob" required>
+                    </div>
+                  </div>
+                </div>
+                <div class=" col-12 col-md-6">
+                      <div class="form-group">
+                        <label>Sex</label>
+                        <select class="form-control select" name="sex">
+                          <option>M</option>
+                          <option>F</option>
+                          <option>Others</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label>Mobile</label>
+                        <input type="tel" placeholder="888 888 8888" maxlength="10"  title="Ten digits code" class="form-control" name="phoneNumber" required>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" name="address" required>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control" name="city" value="Indore" required>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label>State</label>
+                        <input type="text" class="form-control" name="state" value="Madhya Pradesh" required>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label>Zip Code</label>
+                        <input type="text" class="form-control" name="zipCode">
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" class="form-control" value="India">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="submit-section">
+                    <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+                  </div>
+            </form>
+            <!-- /Profile Settings Form -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Page Content -->
+
+
+
+<%- include("../partials/footer"); -%>

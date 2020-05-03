@@ -1,0 +1,249 @@
+<%- include("partials/header", {user: user}); -%>
+
+<!-- Breadcrumb -->
+
+<div class="breadcrumb-bar">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-12 col-12">
+        <nav aria-label="breadcrumb" class="page-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Booking</li>
+          </ol>
+        </nav>
+        <h2 class="breadcrumb-title">Booking</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form action="/booking" method="post">
+          <div class="card">
+            <div class="card-body">
+              <div class="booking-doc-info">
+                <a href="doctor-profile.html" class="booking-doc-img">
+                  <img src="/assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                </a>
+                <div class="booking-info">
+                  <h4><a href="doctor-profile.html"><%= doctor.firstName + " " + doctor.lastName %></a></h4>
+                  <div class="rating">
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="d-inline-block average-rating">35</span>
+                  </div>
+                  <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> <%= doctor.location %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Schedule Widget -->
+
+          <div id="timeSlot" class="card booking-schedule schedule-widget">
+
+            <!-- Schedule Header -->
+
+            <div class="schedule-header">
+              <div class="row">
+                <div class="col-md-12">
+
+                  <!-- Day Slot -->
+
+                  <div class="day-slot">
+                    <ul>
+
+                      <% for(var i=1; i<8; i++) { %>
+
+                      <li>
+                        <h3 id="<%= "day" + i %>"></h3>
+                        <span class="slot-date" id="<%= "currdate" + i %>"></span>
+                      </li>
+
+                      <% } %>
+
+                    </ul>
+                  </div>
+
+                  <!-- /Day Slot -->
+
+                </div>
+              </div>
+            </div>
+
+            <!-- /Schedule Header -->
+
+            <!-- Schedule Content -->
+
+            <div class="schedule-cont">
+              <div class="row">
+                <div class="col-md-12">
+
+                  <!-- Time Slot -->
+
+                  <div class="time-slot">
+                    <ul class="clearfix">
+                      <% if(timeSlots){ %>
+                      <% let slots = timeSlots.sunday %>
+                      <%  for (var i = 1; i < 8 && slots !== null; i++) {   %>
+
+                      <% if(i === 1){ slots = timeSlots.sunday } %>
+                      <% if(i === 2){ slots = timeSlots.monday } %>
+                      <% if(i === 3){ slots = timeSlots.tuesday } %>
+                      <% if(i === 4){ slots = timeSlots.wednesday } %>
+                      <% if(i === 5){ slots = timeSlots.thursday } %>
+                      <% if(i === 6){ slots = timeSlots.friday } %>
+                      <% if(i === 7){ slots = timeSlots.saturday } %>
+
+                      <li>
+
+                        <%  slots.forEach(function(slot) { %>
+
+                        <a name="timeSlot" value="<%= slot %>" class="timing" href="#timeSlot">
+                          <span><%= slot %></span>
+                        </a>
+
+                        <% const da = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000)%>
+                        <% const d = da.getDate()%>
+                        <% const m = da.getMonth()+1%>
+                        <% const y = da.getFullYear()%>
+                        <% const dd = y + "-" + m + "-" + d%>
+
+                        <input class="" id="<%= i + "-" + slot %>" type="checkbox" name="timeSlot" value="<%= dd + "," + slot %>" data-name="<%= new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000) %>">
+                        <label for="<%= i + "-" + slot %>"><%= slot %></label>
+
+                        <%  }); %>
+
+                      </li>
+
+                      <%  } %>
+                      <%  } %>
+
+
+                    </ul>
+                  </div>
+
+                  <!-- /Time Slot -->
+
+                </div>
+              </div>
+            </div>
+
+            <!-- /Schedule Content -->
+
+          </div>
+
+          <!-- /Schedule Widget -->
+
+          <!-- Submit Section -->
+
+          <div class="submit-section proceed-btn text-right">
+            <input type="submit" class="btn btn-primary submit-btn" name="submit" value="Proceed to Pay">
+          </div>
+
+          <!-- /Submit Section -->
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /Page Content -->
+
+<script>
+  var day = new Date();
+  var weekday = new Array(7);
+  weekday[0] = "Sun";
+  weekday[1] = "Mon";
+  weekday[2] = "Tue";
+  weekday[3] = "Wed";
+  weekday[4] = "Thu";
+  weekday[5] = "Fri";
+  weekday[6] = "Sat";
+
+  document.getElementById('day1').innerHTML = weekday[(day.getDay() + 1) % 7];
+  document.getElementById('day2').innerHTML = weekday[(day.getDay() + 2) % 7];
+  document.getElementById('day3').innerHTML = weekday[(day.getDay() + 3) % 7];
+  document.getElementById('day4').innerHTML = weekday[(day.getDay() + 4) % 7];
+  document.getElementById('day5').innerHTML = weekday[(day.getDay() + 5) % 7];
+  document.getElementById('day6').innerHTML = weekday[(day.getDay() + 6) % 7];
+  document.getElementById('day7').innerHTML = weekday[(day.getDay() + 7) % 7];
+</script>
+
+<script>
+  var month = new Array(13);
+  month[1] = "Jan";
+  month[2] = "Feb";
+  month[3] = "Mar";
+  month[4] = "Apr";
+  month[5] = "May";
+  month[6] = "Jun";
+  month[7] = "Jul";
+  month[8] = "Aug";
+  month[9] = "Sept";
+  month[10] = "Oct";
+  month[11] = "Nov";
+  month[12] = "Dec";
+
+  var currentDate1 = new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000);
+  var day1 = currentDate1.getDate()
+  var month1 = month[currentDate1.getMonth() + 1]
+  var year1 = currentDate1.getFullYear()
+  document.getElementById("currdate1").innerHTML = day1 + " " + month1 + " " + year1
+
+  var currentDate2 = new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000);
+  var day2 = currentDate2.getDate()
+  var month2 = month[currentDate2.getMonth() + 1]
+  var year2 = currentDate2.getFullYear()
+  document.getElementById("currdate2").innerHTML = day2 + " " + month2 + " " + year2;
+
+  var currentDate3 = new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000);
+  var day3 = currentDate3.getDate()
+  var month3 = month[currentDate3.getMonth() + 1]
+  var year3 = currentDate3.getFullYear()
+  document.getElementById("currdate3").innerHTML = day3 + " " + month3 + " " + year3;
+
+  var currentDate4 = new Date(new Date().getTime() + 4 * 24 * 60 * 60 * 1000);
+  var day4 = currentDate4.getDate()
+  var month4 = month[currentDate4.getMonth() + 1]
+  var year4 = currentDate4.getFullYear()
+  document.getElementById("currdate4").innerHTML = day4 + " " + month4 + " " + year4;
+
+  var currentDate5 = new Date(new Date().getTime() + 5 * 24 * 60 * 60 * 1000);
+  var day5 = currentDate5.getDate()
+  var month5 = month[currentDate5.getMonth() + 1]
+  var year5 = currentDate5.getFullYear()
+  document.getElementById("currdate5").innerHTML = day5 + " " + month5 + " " + year5;
+
+  var currentDate6 = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000);
+  var day6 = currentDate6.getDate()
+  var month6 = month[currentDate6.getMonth() + 1]
+  var year6 = currentDate6.getFullYear()
+  document.getElementById("currdate6").innerHTML = day6 + " " + month6 + " " + year6;
+
+  var currentDate7 = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+  var day7 = currentDate7.getDate()
+  var month7 = month[currentDate7.getMonth() + 1]
+  var year7 = currentDate7.getFullYear()
+  document.getElementById("currdate7").innerHTML = day7 + " " + month7 + " " + year7;
+</script>
+
+<script type="text/javascript">
+  $('.disabled').click(function(e) {
+    e.preventDefault();
+  })
+</script>
+
+<%- include("partials/footer"); -%>

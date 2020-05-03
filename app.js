@@ -9,7 +9,9 @@ const _ = require("lodash");
 const mongoose = require("mongoose");
 const session = require("express-session");
 
-const user = require("./routes/index");
+const index = require("./routes/index");
+const user = require("./routes/user");
+const admin = require("./routes/admin");
 
 const app = express();
 
@@ -17,7 +19,10 @@ app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use("/", user);
+
+app.use("/", index);
+app.use("/user", user);
+app.use("/admin", admin);
 
 mongoose.connect("mongodb://localhost:27017/medicoDB", {
   useNewUrlParser: true,
@@ -27,7 +32,6 @@ mongoose.connect("mongodb://localhost:27017/medicoDB", {
 const db = mongoose.connection;
 db.on("error", function(err) { console.error(err) });
 db.once("open", function() { console.log("Connected to Mongoose") });
-
 
 
 
